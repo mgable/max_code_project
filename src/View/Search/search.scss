@@ -1,0 +1,20 @@
+.search {
+	.search-input {
+		margin: 0 0 20px;
+	}
+	.search-results {
+		.artists {
+			display: flex;
+			flex-wrap: wrap;
+			.card {
+				margin: 0 0 10px;
+				.primary-genre {
+					white-space: nowrap;
+					font: {
+						size: 13px;
+					}
+				}
+			}
+		}
+	}
+}
