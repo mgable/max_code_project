@@ -3,23 +3,19 @@ import { connect } from 'react-redux';
 import { detail, saved } from './types';
 import Search from './Search';
 import Detail from './Detail';
+import Saved from './Saved';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
-const View = props => {
-	let { view } = props;
-	var component = null;
-
-	if (view === detail){
-		component = <Detail />
-	} else if (view === saved) {
-		component = <div>saved</div>
-	} else {
-		component = <Search />
-	}
+const View = () => {
 
 	return (
 		<div className="component">
-			{component}
+			<Router>
+				<Route path="/:id?" exact component={Search} />
+				<Route path="/detail/:id" component={Detail} />
+				<Route path="/saved" component={Saved} />
+			</Router>
 		</div>
 	)
 }
