@@ -6,9 +6,7 @@ import Detail from './Detail';
 import Saved from './Saved';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
 const View = () => {
-
 	return (
 		<div className="component">
 			<Router>

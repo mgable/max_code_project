@@ -52,6 +52,7 @@ export const SET_GENRES = "SET_GENRES";
 export const SET_SELECTED = "SET_SELECTED";
 export const ARTISTS_RECEIVED = "ARTISTS_RECEIVED";
 export const ARTIST_RECEIVED = "ARTIST_RECEIVED"
+export const CLEAR_ARTIST = "CLEAR_ARTIST";
 
 // event creators
 export const getTextEntered = value => {
@@ -64,5 +65,9 @@ export const setGenres = value => {
 
 export const setSelected = selected => {
 	return {type: SET_SELECTED, selected}
+}
+
+export const clearArtist = () => {
+	return {type: CLEAR_ARTIST }
 }
 

@@ -1,31 +1,56 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Artist from '../shared/Artist'
-import {setView, search} from '../types';
+import { Link } from "react-router-dom";
+import { getApi } from '../../Helpers';
+import { fetchArtist, clearArtist } from '../Search/types';
 import './detail.css';
 
-const Detail = (props) => {
-	let { artist, handleSetView} = props;
-	return (
-		<div className="detail">
-			<div onClick={() => handleSetView() }>Back to Search</div>
-			<Artist artist={artist} handleDetailView={() => console.info("CLICKED")} showAllGenres={true}  />
-		</div>
-	)
+class Detail extends Component {
+
+	constructor(props){
+		super(props);
+		if(props.match && props.match.params && props.match.params.id && !this.props.artists){
+			props.handleGetArtist(props.match.params.id)
+		}
+	}
+	
+	render(){
+		let { artist, handleClearArtist, genre } = this.props;
+
+		if (! genre){
+			genre = {id: ""};
+		}
+		if (artist) {
+			return (
+				<div className="detail">
+					<Link to={"/?id=" + genre.id}><div onClick={handleClearArtist} >Back to Search</div></Link>
+					<Artist artist={artist} handleDetailView={() => console.info("CLICKED")} showAllGenres={true}  />
+				</div>
+			);
+		}
+
+		return null;
+	}
 }
 
 const getArtist = state => state.Detail.artist;
+const getGenre = state => state.Search.selected;
 
 const mapStateToProps = state => {
 	return {
-		artist: getArtist(state)
+		artist: getArtist(state),
+		genre: getGenre(state)
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		handleSetView: () => {
-			dispatch(setView(search))
+		handleGetArtist: id => {
+			dispatch(getApi(fetchArtist(id)))
+		},
+		handleClearArtist: () => {
+			dispatch(clearArtist());
 		}
 	}
 }

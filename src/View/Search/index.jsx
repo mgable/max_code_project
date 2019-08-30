@@ -2,7 +2,6 @@ import React, {Component}  from 'react';
 import { connect } from 'react-redux';
 import { getApi, searchStringToObj } from '../../Helpers';
 import { getTextEntered, fetchGenres, setGenres, setSelected, fetchArtists, fetchArtist } from './types';
-import { Link } from "react-router-dom";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import Artist from '../shared/Artist';
 import './search.css';
@@ -23,7 +22,7 @@ class Search extends Component {
 		// window.location.search = `id=${id}`
 		this.props.history.push({
 		    pathname: '/',
-		    search: "?" + `id=${id}`
+		    search: `?id=${id}`
 		})
 	}
 
@@ -77,8 +76,8 @@ const mapDispatchToProps = dispatch => {
 				dispatch(getApi(fetchGenres(value)));
 			}
 		},
-		handleDetailView: artist => {
-			dispatch(getApi(fetchArtist(artist.id)))
+		handleDetailView: artistID => {
+			dispatch(getApi(fetchArtist(artistID)))
 		}
 	}
 }
