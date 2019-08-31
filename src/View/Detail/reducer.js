@@ -1,4 +1,3 @@
-// import { search, detail, saved } from '../types';
 import { ARTIST_RECEIVED, CLEAR_ARTIST } from '../Search/types';
 
 const initialState = {

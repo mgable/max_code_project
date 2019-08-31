@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import Favorites from './Favorites';
 import './artist.css'
 
 const Artist = (props) => {
@@ -38,7 +39,7 @@ const Artist = (props) => {
 					<Card.Text>Primary Genre:<br /><span className="primary-genre">{primaryGenreName}</span></Card.Text>
 					{additionalGenres}
 					{artistPopularity}
-					<Button variant="primary">Add to favorites</Button>
+					<Favorites id={artist.id} />
 				</Card.Body>
 			</Card>
 		);

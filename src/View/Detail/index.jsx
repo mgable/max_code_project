@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Artist from '../shared/Artist'
-import { Link } from "react-router-dom";
+import Artist from '../shared/Artist';
+import Back from '../shared/Back';
 import { getApi } from '../../Helpers';
 import { fetchArtist, clearArtist } from '../Search/types';
 import './detail.css';
@@ -14,16 +14,18 @@ class Detail extends Component {
 			props.handleGetArtist(props.match.params.id)
 		}
 	}
+
+	componentWillUnmount(){
+		this.props.handleClearArtist();
+	}
 	
 	render(){
-		let { artist, handleClearArtist, genre } = this.props,
-			{ id = false } = (genre || {}),
-			linkTo = id ? "/?id=" + id : "/";
+		let { artist } = this.props
 
 		if (artist) {
 			return (
 				<div className="detail">
-					<Link to={linkTo}><div onClick={handleClearArtist} >Back to Search</div></Link>
+					<Back />
 					<Artist artist={artist} showAllGenres={true}  />
 				</div>
 			);
@@ -34,12 +36,10 @@ class Detail extends Component {
 }
 
 const getArtist = state => state.Detail.artist;
-const getGenre = state => state.Search.selected;
 
 const mapStateToProps = state => {
 	return {
-		artist: getArtist(state),
-		genre: getGenre(state)
+		artist: getArtist(state)
 	};
 };
 
