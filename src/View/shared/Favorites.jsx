@@ -6,23 +6,22 @@ import { addFavorite, removeFavorite } from '../Saved/types';
 
 class Favorites extends Component {
 	render(){
-		let {id, isFavorite , handleAddFavorite, handleRemoveFavorite} = this.props,
+		let {artist, isFavorite , handleAddFavorite, handleRemoveFavorite} = this.props,
 		onclick = () => { 
 			if (isFavorite){
-				handleRemoveFavorite(id);
+				handleRemoveFavorite(artist);
 			} else {
-				handleAddFavorite(id);
+				handleAddFavorite(artist);
 			}
 		};
 
-
 		return (
-			<Button onClick={onclick} variant="primary">favorite me - {id} - am I a favorite? - {isFavorite ? "I am a favorite" : "NOT!"}</Button>
+			<Button onClick={onclick} variant="primary">favorite me - {artist.id} - am I a favorite? - {isFavorite ? "I am a favorite" : "NOT!"}</Button>
 		);
 	}
 }
 
-const getIsFavorite = (state, props) => state.Saved.favorites[props.id];
+const getIsFavorite = (state, props) => state.Saved.favorites[props.artist.id];
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -32,11 +31,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		handleRemoveFavorite: id => {
-			dispatch(removeFavorite(id))
+		handleRemoveFavorite: artist => {
+			dispatch(removeFavorite(artist))
 		},
-		handleAddFavorite: id => {
-			dispatch(addFavorite(id))
+		handleAddFavorite: artist => {
+			dispatch(addFavorite(artist))
 		}
 	}
 }

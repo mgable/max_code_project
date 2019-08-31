@@ -31,13 +31,16 @@ class Search extends Component {
 			artistListing = artists && artists.length ? artists.map((artist) => <div className="col" key={artist.id}><Artist artist={artist} handleDetailView={handleDetailView} /></div>) : null,
 			selected = selectedGenre ? <span>You have selected the <em>{selectedGenre}</em> genre</span> : null;
 		return (
-			<div className="search">
-				<div className="search-input  col-sm">
+			<div className="search col-sm">
+				<h1>Music Search</h1>
+				<nav>
+					<Link className="favorites-link" to="/saved">View Favorites</Link>
+				</nav>
+				<div className="search-input">
 					<label>Enter a search term</label>
 					<Typeahead labelKey="name" onChange={(evt) => { handleSetSelected(evt[0], evt[0].id); this.addSearch(evt[0].id)} } onInputChange={(evt) => handleChange(cache, evt)} options={genres} id="typeAheadID"/>
 				</div>
-				<Link className="favorites-link" to="/saved">View Favorites</Link>
-				<div className="selected-genre col-sm">
+				<div className="selected-genre">
 					{selected}
 				</div>
 				<div className="search-results">

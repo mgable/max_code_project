@@ -46,8 +46,7 @@ const setGenres = (state, action) => {
 }
 
 const setDataRecevied = (state, action) => {
-  console.info("I received some data", action);
-  let genres = action.response.data, //.map((genre) => genre.name)
+  let genres = action.response.data, 
     cache = Object.assign({}, state.cache, {[action.value]: genres})
   return Object.assign({}, state, {genres, cache})
 }
@@ -60,6 +59,5 @@ const textEntered = (state, action) => {
 
   return state
 }
-
 
 export default Genres;

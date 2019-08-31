@@ -1,5 +1,8 @@
 .card {
 	.view {
 		cursor: pointer;
+		&.no-link {
+			cursor: default;
+		}
 	}
 }

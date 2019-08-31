@@ -4,6 +4,7 @@ import Artist from '../shared/Artist';
 import Back from '../shared/Back';
 import { getApi } from '../../Helpers';
 import { fetchArtist, clearArtist } from '../Search/types';
+import { Link } from "react-router-dom";
 import './detail.css';
 
 class Detail extends Component {
@@ -25,8 +26,14 @@ class Detail extends Component {
 		if (artist) {
 			return (
 				<div className="detail">
-					<Back />
-					<Artist artist={artist} showAllGenres={true}  />
+					<h1>Details</h1>
+					<nav>
+						<Back />&nbsp;|&nbsp;
+						<Link className="favorites-link" to="/saved">View Favorites</Link>
+					</nav>
+					<div class="search-results">
+						<Artist artist={artist} showAllGenres={true}  />
+					</div>
 				</div>
 			);
 		}

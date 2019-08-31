@@ -3,38 +3,32 @@ import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from './types';
 import Artist from '../shared/Artist';
 import Back from '../shared/Back';
+import { getApi } from '../../Helpers';
+import { fetchArtist } from '../Search/types';
 import './saved.css';
 
 const Saved = (props) => {
-	let { favoriteArtists} = props,
-		artists = favoriteArtists.map((artist) => <Artist key={artist.id} artist={artist} />)
+	let { favoriteArtists, handleDetailView } = props,
+		artists = favoriteArtists.map((artist) => <Artist key={artist.id} artist={artist} handleDetailView={handleDetailView} />)
 
 	return (
 		<div className="saved">
-			<Back />
+			<h1>Favorites</h1>
+			<nav>
+				<Back />
+			</nav>
 			<div className="search-results">
 				<div className="artists">{artists}</div>
 			</div>
 		</div>
-	)
+	);
 }
 
 const getFavorites = state => state.Saved.favorites;
-const getArtists = state => state.Search.artists;
-const getFavoriteArtists = state => {
-	let favorites = Object.keys(getFavorites(state)).map((key) => parseInt(key, 10)),
-		artists = getArtists(state),
-		favoriteArtists = artists.filter((artist) => favorites.includes(artist.id));
-
-	console.info(favorites);
-
-	return favoriteArtists;
-}
+const getFavoriteArtists = state =>  Object.values(getFavorites(state))
 
 const mapStateToProps = state => {
 	return {
-		favorites: getFavorites(state),
-		artists: getArtists(state),
 		favoriteArtists: getFavoriteArtists(state)
 	};
 };
@@ -46,6 +40,9 @@ const mapDispatchToProps = dispatch => {
 		},
 		handleAddFavorite: id => {
 			dispatch(addFavorite(id))
+		},
+		handleDetailView: artistID => {
+			dispatch(getApi(fetchArtist(artistID)))
 		}
 	}
 }

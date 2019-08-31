@@ -6,6 +6,7 @@ import './artist.css'
 
 const Artist = (props) => {
 	if (props.artist){
+		var link;
 		let { artist, showAllGenres,  handleDetailView} = props,
 			{name, image, genres, id, popularity } = artist,
 			genreName = null,
@@ -28,7 +29,10 @@ const Artist = (props) => {
 		}
 
 		if(handleDetailView){
-			var link = <Card.Title><Link to={"/detail/" + id}><span className="view" onClick={() => handleDetailView(artist.id)}>{name}</span></Link></Card.Title>
+			link = <Card.Title><Link to={"/detail/" + id}><span className="view" onClick={() => handleDetailView(artist.id)}>{name}</span></Link></Card.Title>
+		} else {
+			link = <Card.Title><span className="view no-link" onClick={() => handleDetailView(artist.id)}>{name}</span></Card.Title>
+
 		}
 
 		return (
@@ -39,7 +43,7 @@ const Artist = (props) => {
 					<Card.Text>Primary Genre:<br /><span className="primary-genre">{primaryGenreName}</span></Card.Text>
 					{additionalGenres}
 					{artistPopularity}
-					<Favorites id={artist.id} />
+					<Favorites artist={artist} />
 				</Card.Body>
 			</Card>
 		);

@@ -3,6 +3,7 @@ import Search from './Search';
 import Detail from './Detail';
 import Saved from './Saved';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import './view.css';
 
 const View = () => {
 	return (
