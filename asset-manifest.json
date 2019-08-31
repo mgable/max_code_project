@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/max_code_project/static/css/main.eadc3029.chunk.css",
+    "main.js": "/max_code_project/static/js/main.2f102394.chunk.js",
+    "main.js.map": "/max_code_project/static/js/main.2f102394.chunk.js.map",
+    "runtime~main.js": "/max_code_project/static/js/runtime~main.4c3e488a.js",
+    "runtime~main.js.map": "/max_code_project/static/js/runtime~main.4c3e488a.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/max_code_project/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.308f0ac0.chunk.js": "/max_code_project/static/js/2.308f0ac0.chunk.js",
+    "static/js/2.308f0ac0.chunk.js.map": "/max_code_project/static/js/2.308f0ac0.chunk.js.map",
+    "index.html": "/max_code_project/index.html",
+    "precache-manifest.622262a45520cc96c7fce09e574117aa.js": "/max_code_project/precache-manifest.622262a45520cc96c7fce09e574117aa.js",
+    "service-worker.js": "/max_code_project/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/max_code_project/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.eadc3029.chunk.css.map": "/max_code_project/static/css/main.eadc3029.chunk.css.map"
+  }
+}
