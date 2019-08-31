@@ -32,7 +32,7 @@ class Search extends Component {
 			selected = selectedGenre ? <span>You have selected the <em>{selectedGenre}</em> genre</span> : null;
 		return (
 			<div className="search col-sm">
-				<h1>Music Search</h1>
+				<h1>Search</h1>
 				<nav>
 					<Link className="favorites-link" to="/saved">View Favorites</Link>
 				</nav>

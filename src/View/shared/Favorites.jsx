@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { addFavorite, removeFavorite } from '../Saved/types';
-
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faHeart from '@fortawesome/fontawesome-free-solid/faHeart';
+import './favorite.css';
 
 class Favorites extends Component {
 	render(){
@@ -15,9 +17,11 @@ class Favorites extends Component {
 			}
 		};
 
-		return (
-			<Button onClick={onclick} variant="primary">favorite me - {artist.id} - am I a favorite? - {isFavorite ? "I am a favorite" : "NOT!"}</Button>
-		);
+		if (isFavorite){
+			return <Button className="favorite" title="I am a favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
+		} else {
+			return <Button title="I am a NOT favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
+		}
 	}
 }
 

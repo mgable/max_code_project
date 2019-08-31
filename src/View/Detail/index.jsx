@@ -31,7 +31,7 @@ class Detail extends Component {
 						<Back />&nbsp;|&nbsp;
 						<Link className="favorites-link" to="/saved">View Favorites</Link>
 					</nav>
-					<div class="search-results">
+					<div className="search-results">
 						<Artist artist={artist} showAllGenres={true}  />
 					</div>
 				</div>
