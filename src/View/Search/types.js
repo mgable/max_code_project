@@ -1,5 +1,4 @@
 import {  domain, genresEP, genreSearchEP, artistEP } from '../../Helpers/types';
-import {  detail } from '../types';
 
 // constants
 export const fetchGenres = value =>
@@ -40,8 +39,7 @@ export const fetchArtist = artistID => {
 		},
 		type: ARTIST_RECEIVED,
 		container: 'response',
-		artistID,
-		view: detail
+		artistID
 	}
 }
 

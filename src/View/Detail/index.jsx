@@ -16,16 +16,15 @@ class Detail extends Component {
 	}
 	
 	render(){
-		let { artist, handleClearArtist, genre } = this.props;
+		let { artist, handleClearArtist, genre } = this.props,
+			{ id = false } = (genre || {}),
+			linkTo = id ? "/?id=" + id : "/";
 
-		if (! genre){
-			genre = {id: ""};
-		}
 		if (artist) {
 			return (
 				<div className="detail">
-					<Link to={"/?id=" + genre.id}><div onClick={handleClearArtist} >Back to Search</div></Link>
-					<Artist artist={artist} handleDetailView={() => console.info("CLICKED")} showAllGenres={true}  />
+					<Link to={linkTo}><div onClick={handleClearArtist} >Back to Search</div></Link>
+					<Artist artist={artist} showAllGenres={true}  />
 				</div>
 			);
 		}

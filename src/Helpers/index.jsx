@@ -60,8 +60,6 @@ export const hasNoStateErrors = state => {
   return true;
 }
 
-export const hasFreeShipping = shipping => parseInt(shipping, 10) === 0;
-
 export const getElementAndAttributes = (elementID, useRoot = true) => {
   var element
   if (elementID){
@@ -116,37 +114,7 @@ export const currency = (_price, isFree) => {
   return `$${price.toFixed(2)}`;
 };
 
-export const onError = (context, errorObject) => {
-    for (let prop in errorObject){
-      if (!context.state[`${prop}Error`] || isEmpty(context.state[`${prop}Error`]) || errorObject[prop].error !== context.state[`${prop}Error`].message){
-        context.setState({[`${prop}Error`]: {message: errorObject[prop].message, types: errorObject[prop].types}})
-      }
-    }
-  }
 
-export const getStateAbbrById = (USAStates, stateID) => {
-  if (USAStates && stateID && Array.isArray(USAStates) && USAStates.length) {
-    var USAState = USAStates.find(USAstate => USAstate.id === stateID);
-  }
-
-  if (USAState && USAState.abbr) {
-    return USAState.abbr;
-  }
-
-  return false;
-};
-
-export const getStateIDByAbbr = (USAStates, stateAbbr) => {
-  if (USAStates && stateAbbr && Array.isArray(USAStates) && USAStates.length) {
-    var USAState = USAStates.find(USAstate => USAstate.abbr === stateAbbr);
-  }
-
-  if (USAState && USAState.id) {
-    return USAState.id;
-  }
-
-  return false;
-}
 
 export const omit = (obj, blacklist) => {
   if (Array.isArray(blacklist)) {
@@ -157,9 +125,6 @@ export const omit = (obj, blacklist) => {
 
   throw new Error('blacklist needs to be an array');
 };
-
-export const getConfig = state => state.Drinks.config;
-export const getDOB = state => state.Customer && state.Customer.dob;
 
 export const formatDate = date => {
   return `${date.getFullYear()}-${pad( (date.getMonth() + 1) )}-${pad(date.getDate())}`; // must have a 1 based index for month
@@ -192,44 +157,8 @@ export const importAll = r => {
 export const booleanTest = value =>
   value.toLowerCase() === 'true' || value.toLowerCase() === 'false';
 
-export const getTries = state => state.Order && state.Order.tries;
-export const getLogIn = state => state.Customer && state.Customer.signed_in;
 
 export const isNotANumber = string => isNaN(parseInt(string, 10)); // trap for string === null conditon
-
-export const isUIDLogIn = state =>
-  !!(
-    state.Customer &&
-    state.Customer.id &&
-    !state.Customer.signed_in &&
-    (state.Customer.payment_methods && state.Customer.payment_methods.length)
-  );
-
-export const makePublicImageUrl = image =>
-  `${process.env.REACT_APP_ASSET_URL}${process.env.PUBLIC_URL}/images/${image}`;
-    // `/images/${image}`;
-
-export const makeImageUrl = image => {
-  if (!image) return null;
-  return `${process.env.REACT_APP_ASSET_URL}${image}`;
-  // return image;
-};
-
-export const imageNode = (creditCard, klass) => {
-  return creditCard ? (
-    <img src={creditCard} alt="icon" className={klass} />
-  ) : null;
-};
-
-export const makeTab = (forgroundImage, text, backgroundImage) => {
-  return (
-    <div className="holder">
-      {imageNode(makeImageUrl(forgroundImage), 'forground')}
-      {imageNode(makeImageUrl(backgroundImage || forgroundImage), 'inactive')}
-      <span className="text">{text}</span>
-    </div>
-  );
-};
 
 export const validation = {
   telephone: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
@@ -261,6 +190,7 @@ export const createRefs = fields => {
     {}
   );
 };
+
 export const scrollTo = (element) => {
   if (
     element &&
@@ -272,20 +202,6 @@ export const scrollTo = (element) => {
 }
 
 export const pad = item => ('00' + item).slice(-2);
-
-export const getHours = dayObj => {
-  if (dayObj.operational_hours === 'OPEN_BY_HOURS') {
-    let open = dayObj.hours.begins,
-      close = dayObj.hours.ends;
-    return `${convertDayOfWeek(dayObj.dayof_week)} ${convertISODate(
-      open
-    )} -  ${convertISODate(close)}`;
-  } else if (dayObj.operational_hours === 'OPEN_ALL_DAY') {
-    return `${convertDayOfWeek(dayObj.dayof_week)} Open 24 Hours`;
-  } else {
-    return `${convertDayOfWeek(dayObj.dayof_week)} closed`;
-  }
-};
 
 export const convertDayOfWeek = str => {
   switch (str) {
@@ -308,45 +224,3 @@ export const convertDayOfWeek = str => {
   }
 };
 
-
-
-// Object.defineProperty(Object.prototype, '_forEach', {
-//   value: function (callback, thisArg) {
-//     if (this == null) {
-//       throw new TypeError('Not an object');
-//     }
-//     thisArg = thisArg || window;
-//     for (var key in this) {
-//       if (this.hasOwnProperty(key)) {
-//         callback.call(thisArg, this[key], key, this);
-//       }
-//     }
-//   }
-// });
-
-
-export const convertISODate = str => {
-  // FORMAT TIMES FOR USAGE FROM FEDEX RESPONSE
-  let dateStr = str.replace(/\D/g, ' '),
-    dateSplit = dateStr.split(' '),
-    timeHour = parseInt(dateSplit[3], 10),
-    timeMinutes = dateSplit[4],
-    AMPM = 'AM';
-
-  if (timeHour > 12) {
-    timeHour -= 12;
-    AMPM = 'PM';
-  }
-  return `${timeHour}:${timeMinutes} ${AMPM}`;
-};
-
-export const toggleItems = ref => {
-  if (ref.current.style.display === 'block') {
-    ref.current.style.display = 'none';
-  } else if (
-    ref.current.style.display === '' ||
-    ref.current.style.display === 'none'
-  ) {
-    ref.current.style.display = 'block';
-  }
-};

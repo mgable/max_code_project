@@ -17,7 +17,6 @@ const Detail = (state = initialState, action) => {
 };
 
 const clearArtist = (state, action) => {
-	console.info("clearing the artist!");
 	return initialState;
 }
 

@@ -1,5 +1,4 @@
 import { DATA_RECEIVED, TEXT_ENTERED, SET_GENRES, SET_SELECTED, ARTISTS_RECEIVED } from './types';
-import { SET_VIEW } from '../types';
 
 const initialState = {
   selected: null,
@@ -21,16 +20,10 @@ const Genres = (state = initialState, action) => {
       return setGenres(state, action);
     case SET_SELECTED:
       return setSelected(state, action);
-    case SET_VIEW: 
-      return clear(state, action)
     default:
       return state;
   }
 };
-
-const clear = (state, action) => {
-  return Object.assign({}, state, {artists:[]})
-}
 
 const setArtistReceived = (state, action) => {
   let artists = action.response.data;
