@@ -28,7 +28,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./node_modules/shared-components/src/Styles --include-path ./src/styles/ ./src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules/shared-components/src/Styles --include-path ./src/styles/ ./src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules/shared-components/src/Styles --include-path ./src/styles/ ./src/ -o src/ --watch --recursive",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +48,8 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "redux-devtools-extension": "^2.13.8"
-  }
+  },
+  "homepage": "http://mgable.github.io/max_code_project"
 }

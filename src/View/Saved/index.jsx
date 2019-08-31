@@ -8,8 +8,14 @@ import { fetchArtist } from '../Search/types';
 import './saved.css';
 
 const Saved = (props) => {
-	let { favoriteArtists, handleDetailView } = props,
-		artists = favoriteArtists.map((artist) => <Artist key={artist.id} artist={artist} handleDetailView={handleDetailView} />)
+	var artists;
+
+	let { favoriteArtists, handleDetailView } = props;
+		artists = favoriteArtists.map((artist) => <Artist key={artist.id} artist={artist} handleDetailView={handleDetailView} />);
+
+	if (artists && artists.length === 0){
+		artists = <span>You have no saved favorites</span>
+	}
 
 	return (
 		<div className="saved">
