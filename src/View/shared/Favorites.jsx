@@ -20,7 +20,7 @@ class Favorites extends Component {
 		if (isFavorite){
 			return <Button className="favorite" title="I am a favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
 		} else {
-			return <Button title="I am a NOT favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
+			return <Button title="I am NOT a favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
 		}
 	}
 }
