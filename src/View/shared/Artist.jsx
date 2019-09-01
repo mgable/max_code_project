@@ -29,9 +29,9 @@ const Artist = (props) => {
 		}
 
 		if(handleDetailView){
-			link = <Card.Title><Link to={"/detail/" + id}><span className="view" onClick={() => handleDetailView(artist.id)}>{name}</span></Link></Card.Title>
+			link = <Card.Title><Link to={"/detail/" + id}><span className="view">{name}</span></Link></Card.Title>
 		} else {
-			link = <Card.Title><span className="view no-link" onClick={() => handleDetailView(artist.id)}>{name}</span></Card.Title>
+			link = <Card.Title><span className="view no-link">{name}</span></Card.Title>
 
 		}
 

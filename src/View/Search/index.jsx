@@ -15,15 +15,18 @@ class Search extends Component {
 			params = searchStringToObj(location.search);
 
 		if(params.id && !this.props.artists.length){
-			this.props.handleSetSelected(true, params.id)
+			this.props.handleGetSelected(params.id)
 		}
 	}
 
-	addSearch(id) {
-		this.props.history.push({
-		    pathname: '/',
-		    search: `?id=${id}`
-		})
+	addSearch(evt) {
+		if (evt && evt[0] && evt[0].id) {
+			let id = evt[0].id;
+			this.props.history.push({
+			    pathname: '/',
+			    search: `?id=${id}`
+			})
+		}
 	}
 
 	render() {
@@ -37,8 +40,8 @@ class Search extends Component {
 					<Link className="favorites-link" to="/saved">View Favorites</Link>
 				</nav>
 				<div className="search-input">
-					<label>Enter a search term</label>
-					<Typeahead labelKey="name" onChange={(evt) => { handleSetSelected(evt[0], evt[0].id); this.addSearch(evt[0].id)} } onInputChange={(evt) => handleChange(cache, evt)} options={genres} id="typeAheadID"/>
+					<label>Enter a term to search for music genres</label>
+					<Typeahead labelKey="name" onChange={(evt) => { handleSetSelected(evt); this.addSearch(evt)} } onInputChange={(evt) => handleChange(cache, evt)} options={genres} id="typeAheadID"/>
 				</div>
 				<div className="selected-genre">
 					{selected}
@@ -71,10 +74,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		handleSetSelected: (selected, id) => {
-			if (selected){
-				dispatch(setSelected(selected))
+		handleGetSelected: id => {
+			if (id){
 				dispatch(getApi(fetchArtists(id)));
+			}
+		},
+		handleSetSelected: (evt) => {
+			if (evt && Array.isArray(evt) && evt.length){
+				let selected = evt[0],
+					id = evt[0].id
+				if (selected && id){
+					dispatch(setSelected(selected))
+					dispatch(getApi(fetchArtists(id)));
+				}
 			}
 		},
 		handleChange: (cache, value) => {

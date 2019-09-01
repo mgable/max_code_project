@@ -18,15 +18,6 @@ export const toTitleCase = (str) => {
   );
 }
 
-export const attachScript = (src, id) => {
-  const script = document.createElement('script');
-  script.src = src;
-  script.async = true;
-  script.id = id;
-  document.body.appendChild(script);
-  console.info('SCRIPT ATTACHED!!!!');
-};
-
 export const refsToValues = (refs) => {
   if (refs && typeof refs === "object"){
     let obj = {};
