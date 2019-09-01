@@ -6,7 +6,7 @@ export const fetchGenres = value =>
  	return {
 		ep: `${domain}${genresEP}`,
 		params: {
-			data: {q:value},
+			data: {q:value, limit: 5},
 			method: 'GET'
 		},
 		type: DATA_RECEIVED,
