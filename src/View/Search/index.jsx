@@ -33,6 +33,7 @@ class Search extends Component {
 		let { handleChange, genres, cache, handleSetSelected, artists, handleDetailView, selectedGenre } = this.props,
 			artistListing = artists && artists.length ? artists.map((artist) => <div className="col" key={artist.id}><Artist artist={artist} handleDetailView={handleDetailView} /></div>) : null,
 			selected = selectedGenre ? <span>You have selected the <em>{selectedGenre}</em> genre</span> : null;
+
 		return (
 			<div className="search col-sm">
 				<h1>Search</h1>
@@ -53,7 +54,6 @@ class Search extends Component {
 		)
 	}
 }
-
 
 const getEntered = state => state.Search.entered;
 const getGenres = state => state.Search.cache[state.Search.entered] || [];
@@ -104,9 +104,7 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 	)(Search);
-

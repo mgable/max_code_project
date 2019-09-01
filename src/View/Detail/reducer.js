@@ -42,6 +42,4 @@ const setArtist = (state, action) => {
   return Object.assign({}, state, {artist})
 }
 
-
-
 export default Detail;

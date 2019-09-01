@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import Favorites from './Favorites';
+import Favorites from '../Favorite';
 import './artist.css'
 
 const Artist = (props) => {

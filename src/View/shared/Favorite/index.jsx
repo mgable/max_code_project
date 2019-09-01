@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { addFavorite, removeFavorite } from '../Saved/types';
+import { addFavorite, removeFavorite } from '../../Saved/types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faHeart from '@fortawesome/fontawesome-free-solid/faHeart';
 import './favorite.css';
@@ -9,13 +9,13 @@ import './favorite.css';
 class Favorites extends Component {
 	render(){
 		let {artist, isFavorite , handleAddFavorite, handleRemoveFavorite} = this.props,
-		onclick = () => { 
-			if (isFavorite){
-				handleRemoveFavorite(artist);
-			} else {
-				handleAddFavorite(artist);
-			}
-		};
+			onclick = () => { 
+				if (isFavorite){
+					handleRemoveFavorite(artist);
+				} else {
+					handleAddFavorite(artist);
+				}
+			};
 
 		if (isFavorite){
 			return <Button className="favorite" title="I am a favorite" onClick={onclick} variant="primary"><FontAwesomeIcon icon={faHeart} /></Button>
