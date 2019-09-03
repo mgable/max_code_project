@@ -1,8 +1,22 @@
-import {  domain, genresEP, genreSearchEP, artistEP } from '../../Helpers/types';
+import {  domain, genresEP, genreSearchEP, artistEP, similarEP } from '../../Helpers/types';
 
 // constants
-export const fetchGenres = value =>
- { 
+export const fetchSimilar = artistID => {
+	let ep = similarEP.replace("<id>", artistID);
+
+	return {
+		ep: `${domain}${ep}`,
+		params: {
+			method: 'GET'
+		},
+		type: SIMILAR_RECEIVED,
+		container: 'response',
+		artistID
+	}
+
+}
+
+export const fetchGenres = value => { 
  	return {
 		ep: `${domain}${genresEP}`,
 		params: {
@@ -52,8 +66,14 @@ export const ARTISTS_RECEIVED = "ARTISTS_RECEIVED";
 export const ARTIST_RECEIVED = "ARTIST_RECEIVED"
 export const CLEAR_ARTIST = "CLEAR_ARTIST";
 export const GET_ARTIST = "GET_ARTIST";
+export const SIMILAR_RECEIVED = "SIMILAR_RECEIVED";
+export const GET_SIMILAR = "GET_SIMILAR";
 
 // event creators
+export const getSimilar = id => {
+	return {type: GET_SIMILAR, id};
+}
+
 export const getArtist = id => {
 	return {type: GET_ARTIST, id};
 }
