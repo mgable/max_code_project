@@ -1,5 +1,37 @@
-.detail {
-	.search-results {
+.details {
+	.row {
 		clear: both;
 	}
-}
+	.detail {
+		.search-results {
+			clear: both;
+		}
+	}
+
+	.related {
+		.artists {
+			display: flex;
+			flex-direction: column;
+			.card {
+				margin: 0 0 10px;
+				flex-direction: row;
+				@media (max-width: 450px){
+					flex-direction: column;
+				}
+				.card-img-top {
+					@media (min-width: 450px){
+						width: unset;
+						max-width: 200px;
+						max-height: 200px;
+					}
+				}
+				.primary-genre {
+					white-space: nowrap;
+					font: {
+						size: 13px;
+					}
+				}
+			}
+		}
+	}
+	}

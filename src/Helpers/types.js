@@ -1,8 +1,10 @@
 /* constants */
 export const domain = 'https://music.musicaudience.info';
 export const genresEP = '/api/v1/music/genres';
-export const genreSearchEP = '/api/v1/music/genres/<id>/artists'
-export const artistEP = '/api/v1/music/artists/<id>'
+export const genreSearchEP = '/api/v1/music/genres/<id>/artists';
+export const artistEP = '/api/v1/music/artists/<id>';
+export const similarEP = '/api/v1/music/artists/<id>/similar';
+
 export const API_KEY = 'apikey f044f26d5e5c4fc185d9a73c0e41'
 
 /* action types */
